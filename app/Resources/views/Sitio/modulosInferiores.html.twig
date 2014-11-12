@@ -1,0 +1,19 @@
+<div class="row">
+    {% for modulo in modulos %}
+       {% if modulo.posicion == 'izquierdaInferior' %}
+           <div class="modulo col-md-4 col-xs-6 pull-left">
+               {% include ':Includes:modulos.html.twig' with  {'modulo':modulo} %}
+           </div>
+       {% endif %}
+
+        {% if loop.first %}
+            <div class="didicar  col-md-4 col-xs-6 "><img  src="{{ asset('img/didicar-original.png') }}" ></div>
+        {% endif %}
+
+       {% if modulo.posicion == 'derechaInferior' %}
+            <div class="modulo col-md-4 col-xs-6 pull-right">
+                {% include ':Includes:modulos.html.twig' with  {'modulo':modulo} %}
+            </div>
+       {% endif %}
+    {% endfor %}
+</div>

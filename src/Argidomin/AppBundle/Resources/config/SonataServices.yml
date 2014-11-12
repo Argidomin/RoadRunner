@@ -1,0 +1,134 @@
+services:
+   sonata.admin.empresas:
+        class: Argidomin\AppBundle\Admin\EmpresaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Empresas", label: "Datos de la empresa" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\Empresa
+            - ~
+        calls:
+            - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.menus:
+        class: Argidomin\AppBundle\Admin\Menus\MenusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestor de Secciones", label: "Menus" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\Menus\Menus
+            - ~
+        calls:
+            - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.productos:
+        class: Argidomin\AppBundle\Admin\Menus\SeccionesAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestor de Secciones", label: "Secciones" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\Menus\Secciones
+            - ~
+        calls:
+            - [ setTemplate, [edit, :Admin:edit.html.twig], setTranslationDomain]
+
+   sonata.admin.slider:
+              class: Argidomin\AppBundle\Admin\Adjuntos\SliderAdmin
+              tags:
+                  - { name: sonata.admin, manager_type: orm, group: "Gestor de Secciones", label: "Slider" }
+              arguments:
+                  - ~
+                  - Argidomin\AppBundle\Entity\Adjuntos\Slider
+                  - ~
+              calls:
+                  - [ setTranslationDomain, [ArgidominAppBundle]]
+
+
+   sonata.admin.videos:
+        class: Argidomin\AppBundle\Admin\Adjuntos\VideosAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Adjuntos", label: "Videos" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\Adjuntos\Videos
+            - 'SonataAdminBundle:CRUD'
+        calls:
+            - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.montaje:
+        class: Argidomin\AppBundle\Admin\Adjuntos\PdfMontajeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Adjuntos", label: "Instrucciones de montaje" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\PdfMontaje
+            - ~
+        calls:
+            - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.seguridad:
+        class: Argidomin\AppBundle\Admin\Adjuntos\PdfSeguridadAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Adjuntos", label: "Instrucciones de seguridad" }
+        arguments:
+            - ~
+            - Argidomin\AppBundle\Entity\PdfSeguridad
+            - ~
+        calls:
+            - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.modulos:
+           class: Argidomin\AppBundle\Admin\Menus\ModulosAdmin
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Gestor de Secciones", label: "Modulos" }
+           arguments:
+               - ~
+               - Argidomin\AppBundle\Entity\Menus\Modulos
+               - ~
+           calls:
+               - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.mensajes:
+           class: Argidomin\AppBundle\Admin\Menus\MensajesAdmin
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Mensajes", label: "Mensajes" }
+           arguments:
+               - ~
+               - Argidomin\AppBundle\Entity\Menus\Mensajes
+               - ~
+           calls:
+               - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.colores:
+           class: Argidomin\AppBundle\Admin\Menus\ColoresPorductosAdmin
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Colores", label: "Colores de los productos" }
+           arguments:
+               - ~
+               - Argidomin\AppBundle\Entity\Menus\ColoresProductos
+               - ~
+           calls:
+               - [ setTranslationDomain, [ArgidominAppBundle]]
+
+
+   sonata.admin.imagenes:
+              class: Argidomin\AppBundle\Admin\Adjuntos\ImagenesAdmin
+              tags:
+                  - { name: sonata.admin, manager_type: orm, group: "Imagenes", label: "Imagenes" }
+              arguments:
+                  - ~
+                  - Argidomin\AppBundle\Entity\Imagenes
+                  - ~
+              calls:
+                  - [ setTranslationDomain, [ArgidominAppBundle]]
+
+   sonata.admin.caracteristicas:
+                 class: Argidomin\AppBundle\Admin\Adjuntos\CaracteristicasAdmin
+                 tags:
+                     - { name: sonata.admin, manager_type: orm, group: "Gestor de Secciones", label: "Caracteristicas de los porductos" }
+                 arguments:
+                     - ~
+                     - Argidomin\AppBundle\Entity\Adjuntos\Caracteristicas
+                     - ~
+                 calls:
+                     - [ setTranslationDomain, [ArgidominAppBundle]]

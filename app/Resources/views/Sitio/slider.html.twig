@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+    {% block css %}
+        <link href="{{ asset('css/responsiveslides.css') }}" rel="stylesheet">
+
+    {% endblock %}
+    {% block metaDescripcion %}{{ seccion.metaDescripcion }}{%   endblock %}
+    {% block metaTitulo %}{{ seccion.metaTitulo }}{%   endblock %}
+    {% block tituloWeb %} {{ seccion.tituloSeccion  }} {% endblock %}
+
+    {% block principal %}
+    <div class="col-md-12">
+        <div class="rslides" id="slider3">
+
+                {% for imagenes in seccion.slider.imagenes %}
+                    <li><img src="{{ asset(imagenes.getWebPath) }}" title="{{ imagenes.descripcion }}" ></li>
+                {% else %}
+                    Noy hay un slider para mostrar.
+                {% endfor %}
+
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block modulos %}
+        <div class="row">
+        {% for modulo in seccion.modulos.getValues %}
+
+            {% if modulo.posicion == 'izquierda' %}
+                <div class="col-md-4 col-xs-4 modulo">
+
+                    {% include ':Includes:modulos.html.twig' with  {'modulo':modulo} %}
+                </div>
+            {% endif %}
+
+            {% if modulo.posicion == 'centro' %}
+                <div class="col-md-4 col-xs-4 modulo">
+                    {% include ':Includes:modulos.html.twig' with  {'modulo':modulo} %}
+                </div>
+            {% endif %}
+
+            {% if modulo.posicion == 'derecha' %}
+                <div class="col-md-4 col-xs-4 modulo">
+                    {% include ':Includes:modulos.html.twig' with  {'modulo':modulo} %}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+        </div>
+    {% endblock %}
+
+    {% block js %}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+        <script>
+            // Slideshow 3
+            $("#slider3").responsiveSlides({
+                manualControls: '#slider3-pager',
+                minwidth: 540,
+                maxheight:400,
+                speed: 800
+            });
+
+        </script>
+    {% endblock %}

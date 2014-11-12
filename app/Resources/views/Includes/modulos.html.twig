@@ -1,0 +1,7 @@
+{% if modulo.soloImagen == true %}
+    <a href="{{ modulo.urlDestino }}"> <img src="{{ modulo.imagenes.getWebPath }}" alt="{{ modulo.cuerpo }}"></a>
+{% else %}
+    <img style="max-width: 100%" src="{{ asset(modulo.imagenes.getWebPath) }}" alt="{{ modulo.imagenes }}" class="pull-left">
+    <div class="titulo">{{ modulo }}</div>
+    {{ modulo.cuerpo }}&nbsp<a href="{{ modulo.urlDestino }}">{{ modulo.textoBoton }}</a>
+{% endif %}

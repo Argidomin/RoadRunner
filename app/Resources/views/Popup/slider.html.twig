@@ -1,0 +1,27 @@
+<div id="imagenes" class="modalDialog">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <link href="{{ asset('css/responsiveslides.css') }}" rel="stylesheet">
+
+        <div class="col-md-12">
+            <div class="rslides" id="slider1">
+                {% for imagenes in seccion.slider.imagenes %}
+                    <li><img align="center" src="{{ asset(imagenes.getWebPath) }}"  title="{{ imagenes.descripcion }}"></li>
+                {% else %}
+                    Noy hay un slider para mostrar.
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+        <script>
+            $("#slider1").responsiveSlides({
+                maxwidth: 1300,
+                speed: 800
+            });
+        </script>
+
+

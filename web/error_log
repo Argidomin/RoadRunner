@@ -1,0 +1,6 @@
+[12-Nov-2014 23:32:32 UTC] PHP Fatal error:  Uncaught exception 'Doctrine\Common\Annotations\AnnotationException' with message '[Semantical Error] The annotation "@Gedmo\Timestampable" in property Argidomin\AppBundle\Entity\Empresa::$fechaCreacion was never imported. Did you maybe forget to add a "use" statement for this annotation?' in /home/aforrado/public_html/didicar/vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php:54
+Stack trace:
+#0 /home/aforrado/public_html/didicar/vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php(703): Doctrine\Common\Annotations\AnnotationException::semanticalError('The annotation ...')
+#1 /home/aforrado/public_html/didicar/vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php(641): Doctrine\Common\Annotations\DocParser->Annotation()
+#2 /home/aforrado/public_html/didicar/vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php(334): Doctrine\Common\Annotations\DocParser->Annotations()
+#3 /home/aforrado/public_html/didicar/vendor/doct in /home/aforrado/public_html/didicar/vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php on line 54

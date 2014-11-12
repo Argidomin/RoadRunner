@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+    {% block css %}<link href="{{ asset('css/modal.css') }}" rel="stylesheet">{% endblock %}
+    {% block tituloWeb %} {{ seccion.tituloSeccion  }} {% endblock %}
+    {% block metaDescripcion %}{{ seccion.metaDescripcion }}{%   endblock %}
+    {% block metaTitulo %}{{ seccion.metaTitulo }}{%   endblock %}
+
+ {%  block modulos %}
+     <div class="principal">
+         <div class="col-md-3 submenu seccion2">
+                 <div class="subMenu2">
+                     {{ web.getMenuInferiorLateral | raw }}
+                 </div>
+         </div>
+         <div class="col-md-9 pull-right" id="articulo" style="display: block">
+             <article>
+                 <h1>{{ seccion.tituloSeccion }}</h1>
+                 {{ seccion.cuerpo | raw }}
+
+             </article>
+             <hr>
+         </div>
+     </div>
+ {% endblock %}

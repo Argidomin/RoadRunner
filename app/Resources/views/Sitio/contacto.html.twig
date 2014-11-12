@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+    {% block css %}<link href="{{ asset('css/cssFormularios.css') }}" rel="stylesheet">{% endblock %}
+    {% block metaDescripcion %}{{ seccion.metaDescripcion }}{%   endblock %}
+    {% block metaTitulo %}{{ seccion.metaTitulo }}{%   endblock %}
+    {% block tituloWeb %} {{ seccion.titulo }} {% endblock %}
+
+    {% block principal %}
+    <div class="principal">
+
+       <form action="{{ path('contacto') }}" method="post" {{ form_enctype(form) }} class="col-xs-12 col-md-4">
+
+            <div class="form-group">
+                {{ form_label  (form.nombre, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.nombre, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label  (form.emailOrigen, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.emailOrigen, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label  (form.telefono, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.telefono, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label  (form.empresa, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.empresa, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label  (form.producto, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.producto, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label  (form.asunto, null, {'label_attr': {'class': ' col-sm-2, control-label'}}) }}
+                <div class="col-sm-9 pull-right">
+                    {{ form_widget (form.asunto, {'attr': {'class' : 'form-control'} }) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label  (form.cuerpo, null, {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget (form.cuerpo, {'attr': {'class' : 'form-control'} }) }}
+            </div>
+
+
+            {{ form_rest(form) }}
+
+
+            <input type="submit" class="boton btn pull-right"/>
+        </form>
+        <div class="col-md-6 pull-right contactoImagen">
+            <img src="{{ asset(seccion.imagen.getWebPath) }}" alt="{{ seccion.imagen }}" title="{{ seccion.imagen.descripcion }}"  >
+
+        </div>
+
+    </div>
+
+    {% endblock %}
+
+
+    {% block modulos %}
+
+
+        <div class="col-md-8 pull-right">
+            <div class="titulo"><h1>{{ seccion.tituloSeccion }}</h1></div>
+            {{ seccion.cuerpo | raw }}
+
+
+            <hr>
+        </div>
+        <div class="clear-fix"></div>
+
+    {% endblock %}

@@ -1,0 +1,162 @@
+{% extends '::base.html.twig' %}
+
+
+    {% block tituloWeb %}{{ seccion.seccionPadre.tituloSeccion }}{% endblock %}
+    {% block css %}<link href="{{ asset('css/modal.css') }}" rel="stylesheet">{% endblock %}
+
+    {% block metaDescripcion %}{{ seccion.metaDescripcion }}{%   endblock %}
+    {% block metaTitulo %}{{ seccion.metaTitulo }}{%   endblock %}
+
+    {% block principal %}
+
+        <div id="principal"  class="principal" style="display: none">
+
+                <div class="col-md-5 col-xs-12" >
+                    <h2>{{ seccion.seccionPadre.tituloSeccion  }}</h2>
+                    {{ seccion.seccionPadre.cuerpo| raw }}
+
+                    <div class="enlaces">
+                        {% if seccion.seccionPadre.slider is not null %}
+                            <a href="#imagenes"><img src="{{ asset('img/galeria-imagenes.png') }}" alt="{{  seccion.seccionPadre.slider.nombre }}"></a>
+                            {% include ':Popup:slider.html.twig' with  {'seccion':seccion.seccionPadre} %}
+                        {% endif %}
+
+                        {% if seccion.seccionPadre.video is not null %}
+                            <a href="#" onclick="muestraVideo()" alt="{{ seccion.seccionPadre.video.textoAlt }}">
+                                <img src="{{ asset ('img/galeria-videos.png') }}" alt="{{  seccion.seccionPadre.video.textoAlt }}" >
+                            </a>
+                        {% endif %}
+
+                        {% if seccion.seccionPadre.pdfMontaje is not null %}
+                            <a target="_blank" href="{{ asset(seccion.seccionPadre.pdfMontaje.getWebPath) }}" alt="{{ seccion.seccionPadre.pdfMontaje.textoAlt }}">
+                                <img src="{{ asset('img/instrucciones-montaje.png') }}" alt="{{  seccion.seccionPadre.pdfMontaje.textoAlt }}" >
+                            </a>
+                        {% endif %}
+
+                        {% if seccion.seccionPadre.pdfSeguridad is not null %}
+                            <a target="_blank" href="{{ asset(seccion.seccionPadre.pdfSeguridad.getWebPath) }}" alt="{{ seccion.seccionPadre.pdfSeguridad.textoAlt }}">
+
+                                <img src="{{ asset ('img/manual-de-seguridad.png') }}" alt="{{  seccion.seccionPadre.pdfSeguridad.textoAlt }}" >
+
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-7  col-xs-12" id="imagen">
+                    <img class="pull-right" src="{{ asset(seccion.seccionPadre.imagen.getWebPath) }}" alt="{{ seccion.seccionPadre.imagen.nombre }}">
+
+                </div>
+
+
+        </div>
+        <div>                {% if seccion.seccionPadre.colorTexto != null %}
+
+            <div class="col-md-5  textoColores">
+                    <span onclick="muestraPrincipal()">{{ seccion.seccionPadre.colorTexto }} {{ seccion.seccionPadre }}</span>
+            </div>
+            {% endif %}
+
+            <div class="col-md-6   col-xs-12 pull-right">
+                {% for color in seccion.seccionPadre.colores %}
+                    <div class="color col-xs-2">
+
+                        <a href="#" onclick="cambiarImagen({{ asset( color.imagenes.getWebPath) |json_encode() }})">
+                            <img src="{{ asset(color.imagenesMiniatura.getWebPath) }}" alt="{{ color.imagenesMiniatura.nombre }}"
+                                 title="{{ color.imagenesMiniatura.descripcion }}">
+                        </a>
+                        <span style="color: {{ color.colorHEX }}">{{ color.color }}</span>
+                    </div>
+
+
+                {% endfor %}
+            </div>
+
+        </div>
+
+    {% endblock %}
+
+    {% block modulos %}
+    <div class="col-md-12">
+        <div class="col-md-3 col-xs-12 seccion submenu">
+            {{ web.submenu(seccion.seccionPadre.slug) | raw }}
+            {% if seccion.seccionPadre.slider is not null %}
+               <ul><a href="#imagenes" class="submenu">
+                       <span class="glyphicon glyphicon-chevron-right"></span>Imagenes de {{ seccion.seccionPadre }}
+                       {% include ':Popup:slider.html.twig' with  {'seccion':seccion.seccionPadre} %}
+                </a></ul>
+
+            {% endif %}
+
+            {% if seccion.seccionPadre.video is not null %}
+                <ul>
+                    <a href="#" onclick="muestraVideo2()">
+                        <span class="glyphicon glyphicon-chevron-right"></span>Video de {{ seccion.seccionPadre }}
+                    </a>
+                </ul>
+            {% endif %}
+
+            {% if seccion.seccionPadre.pdfMontaje is not null %}
+                <ul>
+                    <a target="_blank" href="{{ asset(seccion.seccionPadre.pdfMontaje.getWebPath) }}" alt="{{ seccion.seccionPadre.pdfMontaje.textoAlt }}">
+                        <span class="glyphicon glyphicon-chevron-right"></span>Instrucciones de montaje
+                    </a>
+
+                </ul>
+            {% endif %}
+
+            {% if seccion.seccionPadre.pdfSeguridad is not null %}
+                <ul>
+                    <a target="_blank" href="{{ asset(seccion.seccionPadre.pdfSeguridad.getWebPath) }}">
+                <span class="glyphicon glyphicon-chevron-right"></span>Manual de seguridad
+                    </a>
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="col-md-9 caracteristicas">
+
+            <h1>{{ seccion.tituloSeccion }}</h1>
+            <div id="caracteristicas" style="display: block">
+                {%  for caracteristica in seccion.caracterisiticas.getValues  %}
+
+                    <div class="col-md-6  col-xs-12 caracteristica">
+                        <div><img  src="{{ asset(caracteristica.imagenes.getWebPath) }}" alt="{{ caracteristica.imagenes }}" class="pull-left"></div>
+                        <div class="titulo">{{ caracteristica }}</div>
+                        {{ caracteristica.cuerpo | raw }}
+                    </div>
+
+                {% endfor %}
+
+                </div>
+            <div id="video" style="display: none">
+
+                {% if seccion.seccionPadre.video != null %}
+                    <iframe class= "pull-right" alt="{{ seccion.seccionPadre.video.textoAlt }}"  width="560" height="315"
+                            src="//www.youtube.com/embed/{{ seccion.seccionPadre.video.url }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block js %}
+        <script>
+            function muestraVideo2(){
+                $("#caracteristicas").css("display","none");
+                $("#video").css("display","block");
+
+            }
+
+            function cambiarImagen(imagen)
+            {
+                $("#imagen").html('<img src="'+ imagen + '" class="pull-right">');
+                $("#principal").css("display","block");
+            }
+            function muestraPrincipal()
+            {
+                $("#principal").css("display","block")
+            }
+        </script>
+    {% endblock %}

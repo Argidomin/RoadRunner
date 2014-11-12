@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block metaDescripcion %}{%   endblock %}">
+    <meta name="title" content="{% block metaTitulo %}{%   endblock %}">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+    <title> {% block tituloWeb %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/didicar.css') }}" rel="stylesheet">
+    {% block css %}{% endblock %}
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="{{ asset('js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
+    <script src=" {{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container">
+
+    <div class="header row">
+        <div itemscope itemtype="http://schema.org/LocalBusiness">
+            <div itemprop="logo" itemscope="logo" class="col-md-4 logo col-xs-4 "><a href="{{ path('sitio') }}">
+                    <img itemprop="name"  alt="{{ web.empresa }}" src="{{ asset('img/logo.png') }}">
+                </a>
+            </div>
+            <div itemprop="description" class="col-md-4 col-xs-8 slogan">{{ web.empresa.slogan | raw }}</div>
+            <div class="col-md-4 col-xs-12 telefono">
+                <label>{{ web.empresa.contacto }}</label>
+                <div class="pull-right telefonoFondo">
+                    <img src="{{ asset('img/telefono.png') }}">
+                    <span itemprop="telephone" ><a href="tel:{{ web.empresa.telefonoContacto }}">{{ web.empresa.telefonoContacto }}</a> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {% for type, flashMessage in app.session.flashbag.all() %}
+        <div class="alert alert-{{ type }} fade in">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            {% if flashMessage.title is defined %}
+                <strong>{{ flashMessage.title }}</strong>
+                {{ flashMessage.message }}
+            {% else %}
+                {{ type }}
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse menu " role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                {{ web.menu | raw }}
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+        {% block principal %}{% endblock %}
+
+    {% block submenu %}{% endblock %}
+    {% block modulos %}{% endblock %}
+
+
+
+    <div class="clearfix"></div>
+    <hr>
+    <div class="row inferior">
+        {{ web.modulosInferiores | raw}}
+
+    </div>
+
+    <hr>
+    <div class="clearfix"></div>
+    <div class="redesSociales col-md-12 row">
+        <label>{{ web.empresa.redesSociales }}</label>
+        <a href="{{web.empresa.urlFacebook}}" rel="nofollow" target="_blank"><img src="{{ asset('img/didicar-facebook.png') }}" alt="Facebook"></a>
+        <a href="{{ web.empresa.urlTwitter }}" rel="nofollow" target="_blank"><img src="{{ asset('img/didicar-twitter.png') }}" alt="Twitter"></a>
+        <a href="{{ web.empresa.urlGoogle }}" rel="nofollow" target="_blank"><img src="{{ asset('img/didicar-google-plus.png') }}" alt="google"></a>
+    </div>
+
+
+</div><!-- /.container -->
+
+<footer>
+
+    <div class="menuInferior" >
+        {{ web.menu('inferior') | raw }}
+
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

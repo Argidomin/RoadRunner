@@ -1,0 +1,9 @@
+{% for seccion in menu %}
+    <ul class="subseccion">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+            <a href="{{ path('sitio',{'ruta':padre.ruta,'sub':seccion.ruta}) }}">{{ seccion }}</a>
+        {% if loop.index %}
+            {% set defecto = seccion %}
+        {% endif %}
+    </ul>
+{% endfor %}
