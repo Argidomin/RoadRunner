@@ -80,6 +80,11 @@ class Imagenes
      **/
     private $ordenSlider;
 
+    /**
+     * @ORM\Column(name="url", type="string")
+     */
+    private $url;
+
 
 
     public function __toString()
@@ -377,5 +382,28 @@ class Imagenes
     public function getOrdenSlider()
     {
         return $this->ordenSlider;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Imagenes
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

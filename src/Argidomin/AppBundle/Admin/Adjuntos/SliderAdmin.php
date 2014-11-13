@@ -50,6 +50,7 @@ class SliderAdmin extends Admin
         $listMapper
             ->addIdentifier('nombre',null, ['label' => 'Nombre de la imagen'])
             ->add('descripcion',null,['label' => 'Descripción breve del archivo',])
+            ->add('imagenes')
             ->add('fechaCreacion','datetime',['format' => 'd/m/y h:m', 'label' =>'Fecha de creación'])
             ->add('fechaActualizado','datetime',['format' => 'd/m/y h:m', 'label' =>'Fecha de modificacion'])
 

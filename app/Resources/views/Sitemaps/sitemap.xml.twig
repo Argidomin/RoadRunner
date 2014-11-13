@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for url in seccion %}
+        <url>
+            {% if url.seccionPadre != null and url.estado == true  %}
+                <loc>{{ hostname }}/{{ url.seccionPadre.ruta }}/{{ url.ruta }}</loc>
+            {% else %}
+                <loc>{{ hostname }}/{{ url.ruta }}</loc>
+            {% endif %}
+            <lastmod>{{ url.fechaActualizado | date('d/m/y') }}</lastmod>
+        </url>
+    {% endfor %}
+</urlset>

@@ -4,6 +4,7 @@ namespace Argidomin\AppBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PlantillaController extends Controller
 {
@@ -98,6 +99,22 @@ class PlantillaController extends Controller
     {
         return $this->em->getRepository('AppBundle:Menus\Secciones')
             ->getSeccion($ruta, 1);
+    }
+
+    public function siteMap(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $seccion = $em->getRepository('AppBundle:Menus\Secciones')
+            ->findAll();
+
+        $hostname = $request->getHost();
+
+        return $this->render(':Sitemaps:sitemap.xml.twig',['seccion' => $seccion,
+            'hostname' => $hostname]);
+
+
+
     }
 
 }

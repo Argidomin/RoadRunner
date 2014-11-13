@@ -63,4 +63,22 @@ class SeccionesRepository extends EntityRepository
             ->getQuery()->getResult();
 
     }
+
+    public function getMenus()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder();
+
+        return $query->select(['s,m'])
+            ->from('AppBundle:Menus\Secciones', 's')
+            ->innerJoin('s.menu','m')
+            ->where($query->expr()->eq('s.estado',':estado'))
+            ->setParameters([':menu'=> $menu,
+                ':estado' => true])
+            ->orderBy('s.posicion', 'ASC')
+            ->groupBy('s.menu')
+
+            ->getQuery()->getResult();
+    }
 }

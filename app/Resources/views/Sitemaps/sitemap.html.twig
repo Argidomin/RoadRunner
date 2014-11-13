@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+
+    {% block tituloWeb %} Sitemap {% endblock %}
+    {% block principal %}
+
+
+        <div class="principal" id="principal">
+            <ul>
+            <div class="col-md-4">
+                <ul><strong>Principal</strong></ul>
+                {% for seccion in seccion %}
+
+                    {% if seccion.menu == 'principal' %}
+                        {% if seccion.seccionPadre is null  %}
+                            <li>
+                            <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                            {% set submenu = web.submenu(seccion.slug, false) %}
+                            {% if submenu != null %}
+                                <ul>
+                                    {% for sub in submenu %}
+
+                                        <li>
+                                            <a href="{{ path('sitio',{'ruta':seccion.ruta, 'sub': sub.ruta}) }}">{{ sub }}</a>
+                                        </li>
+                                    {%  endfor %}
+                                </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            </ul>
+            <ul>
+                <div class="col-md-4">
+                    <ul><strong>Legal</strong></ul>
+                    {% for seccion in seccion %}
+
+                        {% if seccion.menu == 'inferior' %}
+                            {% if seccion.seccionPadre is null  %}
+                                <li>
+                                    <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </ul>
+        </div>
+        <ul>
+            <div class="col-md-4">
+                <ul><strong>Portada</strong></ul>
+                {% for seccion in seccion %}
+
+                    {% if seccion.menu == 'Portada' %}
+                        {% if seccion.seccionPadre is null  %}
+                            <li>
+                                <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </ul>
+        </div>
+
+
+
+    {% endblock %}

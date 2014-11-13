@@ -23,6 +23,7 @@ class ImagenesAdmin extends Admin
             ->add('nombreId','text',['label' => 'Nombre Identificativo',
                 'help' => 'Indique un nombre para identificar el archivo'])
             ->add('ordenSlider','text', ['required' => false])
+            ->add('url','url', ['required' => null])
             ->add('imagen','file')
             ->add('nombre','text', ['label' => 'Nombre de la imagen'])
             ->add('descripcion','text',['label' => 'Descripción breve del archivo',])

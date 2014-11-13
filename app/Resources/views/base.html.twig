@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-ES">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% block metaDescripcion %}{%   endblock %}">
     <meta name="title" content="{% block metaTitulo %}{%   endblock %}">
-    <meta name="author" content="">
+    <meta name="author" content="Toycy.com">
     <link rel="icon" href="../../favicon.ico">
-
+    <META name="robots" content="INDEX,FOLLOW">
     <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
     <title> {% block tituloWeb %}{% endblock %}</title>
@@ -113,6 +113,15 @@
 
     <div class="menuInferior" >
         {{ web.menu('inferior') | raw }}
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="{{ path('sitio',{'ruta':'sitemap'}) }}" >Sitemap</a>
+            </li>
+            <li class="dropdown">
+                <a href="{{ path('sitio',{'ruta':'sitemap','_format':'xml'}) }}" >Sitemap.xml</a>
+            </li>
+
+        </ul>
 
     </div>
 </footer>

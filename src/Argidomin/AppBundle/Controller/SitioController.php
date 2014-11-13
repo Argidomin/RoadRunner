@@ -28,6 +28,26 @@ class SitioController extends Controller
     }
 
     /**
+     * @Route("/sitemap.{_format}",name="siteMapGenerator",
+     *               defaults = {"_format": "html"},
+     *               Requirements = {"_format":"html|xml"})
+     */
+    public function siteMap(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $seccion = $em->getRepository('AppBundle:Menus\Secciones')
+            ->findAll();
+
+        $hostname = $request->getHost();
+
+        return $this->render(':Sitemaps:sitemap.'.$request->getRequestFormat() .'.twig',['seccion' => $seccion,
+            'hostname' => $hostname]);
+    }
+
+
+
+    /**
      *@Route("/contacto", name="contacto")
      */
     public function contactoAction(Request $request)
