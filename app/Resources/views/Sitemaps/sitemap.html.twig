@@ -36,7 +36,7 @@
                     <ul><strong>Legal</strong></ul>
                     {% for seccion in seccion %}
 
-                        {% if seccion.menu == 'inferior' %}
+                        {% if seccion.menu.slug == 'legal' %}
                             {% if seccion.seccionPadre is null  %}
                                 <li>
                                     <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>

@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Argidomin\AppBundle\Form\Menus\MensajesType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 class SitioController extends Controller
 {
     public function getSecction($seccion)
@@ -31,6 +33,7 @@ class SitioController extends Controller
      * @Route("/sitemap.{_format}",name="siteMapGenerator",
      *               defaults = {"_format": "html"},
      *               Requirements = {"_format":"html|xml"})
+     * @Cache(expires="tomorrow", public=true)
      */
     public function siteMap(Request $request)
     {
@@ -48,7 +51,8 @@ class SitioController extends Controller
 
 
     /**
-     *@Route("/contacto", name="contacto")
+     * @Route("/contacto", name="contacto")
+     * @Cache(expires="tomorrow", public=true)
      */
     public function contactoAction(Request $request)
     {
@@ -87,6 +91,7 @@ class SitioController extends Controller
     /**
      * @Route("/{ruta}/{sub}", name="sitio",
      *         defaults={"ruta" = "portada","sub"= null})
+     * @Cache(expires="tomorrow", public=true)
      */
     public function seccionAction($ruta = 'portada',$sub = null)
     {

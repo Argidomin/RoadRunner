@@ -147,9 +147,11 @@ class SeccionesAdmin extends  Admin
             ->add('menu')
             ->add('ruta')
             ->add('tipo')
+            ->add('caracterisiticas')
+            ->add('slider.imagenes')
             ->add('modulos')
-            ->add('fechaCreacion','datetime',['format' => 'd/m/y h:m', 'label' =>'Fecha de creación'])
-            ->add('fechaActualizado','datetime',['format' => 'd/m/y h:m', 'label' =>'Fecha de modificacion'])
+            ->add('colores')
+            ->add('slider')
             ->add('estado',null,['label'=> '¿Activado?'])
             
             ;
