@@ -4,8 +4,10 @@ security:
         secured_area:
             pattern:   ^/
             anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
 
-
+    access_control:
 
         # Include the following line to also secure the /admin path itself
         # - { path: ^/admin$, roles: ROLE_ADMIN }
