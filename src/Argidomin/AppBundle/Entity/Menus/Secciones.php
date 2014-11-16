@@ -117,6 +117,11 @@ class Secciones extends SEO
      */
     private $posicion;
 
+    /**
+     * @ORM\Column(name="urlAlternate", type="string", length=100)
+     */
+    private $urlAlternate;
+
     public function __toString()
     {
         return $this->getTitulo();
@@ -516,5 +521,28 @@ class Secciones extends SEO
     public function getColorTexto()
     {
         return $this->colorTexto;
+    }
+
+    /**
+     * Set urlAlternate
+     *
+     * @param string $urlAlternate
+     * @return Secciones
+     */
+    public function setUrlAlternate($urlAlternate)
+    {
+        $this->urlAlternate = $urlAlternate;
+
+        return $this;
+    }
+
+    /**
+     * Get urlAlternate
+     *
+     * @return string 
+     */
+    public function getUrlAlternate()
+    {
+        return $this->urlAlternate;
     }
 }

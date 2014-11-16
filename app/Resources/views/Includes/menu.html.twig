@@ -3,14 +3,14 @@
 
         {% if seccion.seccionPadre is null  %}
            <li class="dropdown">
-               <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+               <a id="{{ seccion.menu }}" href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
             {% set submenu = web.submenu(seccion.slug, false) %}
             {% if submenu != null %}
             <ul class="dropdown-menu subseccion" role="menu">
                 {% for sub in submenu %}
 
                     <li>
-                        <a href="{{ path('sitio',{'ruta':seccion.ruta, 'sub': sub.ruta}) }}"><span class="glyphicon glyphicon-chevron-right"></span> {{ sub }}</a>
+                        <a  href="{{ path('sitio',{'ruta':seccion.ruta, 'sub': sub.ruta}) }}"><span class="glyphicon glyphicon-chevron-right"></span> {{ sub }}</a>
                     </li>
                 {%  endfor %}
             </ul>

@@ -87,7 +87,7 @@ class PlantillaController extends Controller
     public function getMenuInferiorLateral()
     {
         $menu = $this->em->getRepository('AppBundle:Menus\Secciones')
-            ->getSeccionesMenu('inferior');
+            ->getSeccionesMenu('legal');
 
         return $this->container->get('templating')
             ->render(':Includes:menuLateral.html.twig',

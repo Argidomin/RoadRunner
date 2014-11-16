@@ -4,9 +4,19 @@
     {% for url in seccion %}
         <url>
             {% if url.seccionPadre != null and url.estado == true  %}
-                <loc>{{ hostname }}/{{ url.seccionPadre.ruta }}/{{ url.ruta }}</loc>
+                <loc>{{ url('sitio',{'ruta': url.seccionPadre.ruta, 'sub':url.ruta}) }}</loc>
+                <xhtml:link
+                        rel="canonical"
+                        hreflang="es"
+                        href={{ seccion.urlAlternate }}
+                        />
             {% else %}
-                <loc>{{ hostname }}/{{ url.ruta }}</loc>
+                <loc>{{ url('sitio',{'ruta': url.ruta }) }}</loc>
+                <xhtml:link
+                        rel="canonical"
+                        hreflang="es"
+                        href={{ seccion.urlAlternate }}
+                        />
             {% endif %}
             <lastmod>{{ url.fechaActualizado | date('d/m/y') }}</lastmod>
         </url>

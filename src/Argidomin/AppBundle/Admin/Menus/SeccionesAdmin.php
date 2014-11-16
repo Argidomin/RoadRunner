@@ -79,6 +79,7 @@ class SeccionesAdmin extends  Admin
                                                'help' => 'Maximo 70 caracteres'])
                     ->add('metaDescripcion','text',['label' => 'Meta descripción de la seccion',
                                                     'help' => 'Maximo 160 caracteres'])
+                    ->add('urlAlternate', 'text', ['label' => 'Url alternativa'])
                 ->end()
             ->end()
             ->tab('Colores')

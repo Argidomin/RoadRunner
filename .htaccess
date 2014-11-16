@@ -1,5 +1,4 @@
 <IfModule mod_rewrite.c>
-
     Options +FollowSymlinks
     RewriteEngine On
     RewriteCond %{HTTP_HOST} ^didicar.pt$ [NC,OR]
@@ -9,26 +8,10 @@
     # Explicitly disable rewriting for front controllers
     #RewriteRule ^app_dev.php - [L]
     RewriteRule ^web/app.php - [L]
-
+ 
     RewriteCond %{REQUEST_FILENAME} !-f
-
+ 
     # Change below before deploying to production
     #RewriteRule ^(.*)$ /app.php [QSA,L]
     RewriteRule ^(.*)$ web/app.php [QSA,L]
-
-    Header set Cache-Control "max-age=604800, public"
-
-    ExpiresActive On
-    ExpiresDefault A86400
-    ExpiresByType image/x-icon A2592000
-    ExpiresByType application/x-javascript A2592000
-    ExpiresByType text/css A2592000
-    ExpiresByType image/gif A604800
-    ExpiresByType image/png A604800
-    ExpiresByType image/jpeg A604800
-    ExpiresByType text/plain A604800
-    ExpiresByType application/x-shockwave-flash A604800
-    ExpiresByType video/x-flv A604800
-    ExpiresByType application/pdf A604800
-    ExpiresByType text/html A900
 </IfModule>

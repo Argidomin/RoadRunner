@@ -13,14 +13,14 @@
                     {% if seccion.menu == 'principal' %}
                         {% if seccion.seccionPadre is null  %}
                             <li>
-                            <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                            <a rel="alternate" hreflang="pt-PT" href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
                             {% set submenu = web.submenu(seccion.slug, false) %}
                             {% if submenu != null %}
                                 <ul>
                                     {% for sub in submenu %}
 
                                         <li>
-                                            <a href="{{ path('sitio',{'ruta':seccion.ruta, 'sub': sub.ruta}) }}">{{ sub }}</a>
+                                            <a rel="alternate" hreflang="pt-PT"   href="{{ path('sitio',{'ruta':seccion.ruta, 'sub': sub.ruta}) }}">{{ sub }}</a>
                                         </li>
                                     {%  endfor %}
                                 </ul>
@@ -39,7 +39,7 @@
                         {% if seccion.menu.slug == 'legal' %}
                             {% if seccion.seccionPadre is null  %}
                                 <li>
-                                    <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                                    <a rel="alternate" hreflang="pt-PT"  href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
                                 </li>
                             {% endif %}
                         {% endif %}
@@ -55,7 +55,7 @@
                     {% if seccion.menu == 'Portada' %}
                         {% if seccion.seccionPadre is null  %}
                             <li>
-                                <a href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
+                                <a rel="alternate" hreflang="pt-PT"  href="{{ path('sitio',{'ruta':seccion.ruta}) }}" >{{ seccion }}</a>
                             </li>
                         {% endif %}
                     {% endif %}

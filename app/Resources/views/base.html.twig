@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/didicar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cookies.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -110,6 +111,18 @@
 
 </div><!-- /.container -->
 
+<div class="cookiesms" id="cookie1">
+    Utilizamos cookies para fins estatísticos. Se você continuar, entendemos que da sua aceitação. Para modificar a configuração ou mais informação, leia nossa
+    <a href="{{ path('sitio', {'ruta': 'privacidad-y-seguridad'})  }}">política de privacidade</a>.
+    <button onclick="controlcookies()">Ok</button>
+    <div class="cookies2" onmouseover="document.getElementById('cookie1').style.bottom = '0px';">Política de cookies + </div>
+</div>
+<script type="text/javascript">
+    if (localStorage.controlcookie>0){
+        document.getElementById('cookie1').style.bottom = '-50px';
+    }
+</script>
+
 <footer>
 
     <div class="menuInferior" >
@@ -118,12 +131,7 @@
             <li class="dropdown">
                 <a href="{{ path('sitio',{'ruta':'sitemap'}) }}" >Sitemap</a>
             </li>
-            <li class="dropdown">
-                <a href="{{ path('sitio',{'ruta':'sitemap','_format':'xml'}) }}" >Sitemap.xml</a>
-            </li>
-
         </ul>
-
     </div>
 </footer>
 
@@ -134,6 +142,15 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+<script type="text/javascript">
+    function controlcookies() {
+// si variable no existe se crea (al clicar en Aceptar)
+        localStorage.controlcookie = (localStorage.controlcookie || 0);
+
+        localStorage.controlcookie++; // incrementamos cuenta de la cookie
+        cookie1.style.display='none'; // Esconde la política de cookies
+    }
+</script>
 {% block js %}{% endblock %}
 </body>
 </html>
